@@ -23,7 +23,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="/wazi-robot-platform/index.php">
+                    <a href="./index.php">
                         <span class="ti-layout-grid2"></span>
                         <span>Dashboard</span>
                     </a>
