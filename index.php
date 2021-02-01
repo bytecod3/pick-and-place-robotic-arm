@@ -30,22 +30,22 @@
 
                 <li>
                     <a href="">
-                        <span class="ti-face-smile"></span>
+                        <span class="ti-settings"></span>
                         <span>Controls</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="">
-                        <span class="ti-folder"></span>
-                        <span>Exit</span>
+                        <span class="ti-book"></span>
+                        <span>About</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="">
-                        <span class="ti-book"></span>
-                        <span>Contact</span>
+                        <span class="ti-user"></span>
+                        <span>Logout</span>
                     </a>
                 </li>
 
