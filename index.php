@@ -74,8 +74,8 @@ $date = date('m/d/Y h:i:s a', time());
         </div>
 
         <div class="social-icons">
-            <span class="ti-bell"></span>
-            <span class="ti-comment"></span>
+<!--            <span class="ti-bell"></span>-->
+<!--            <span class="ti-comment"></span>-->
             <div></div>
         </div>
     </header>
@@ -89,7 +89,7 @@ $date = date('m/d/Y h:i:s a', time());
 <!--            OPERATION STATUS-->
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-power-off"></span>
                     <div>
                         <h5>Arm Status</h5>
                         <h4 id="status">Offline</h4>
@@ -103,7 +103,7 @@ $date = date('m/d/Y h:i:s a', time());
 <!--            NUMBER OF OBJECTS-->
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-package"></span>
                     <div>
                         <h5>Capacity</h5>
                         <h4>50</h4>
@@ -116,7 +116,7 @@ $date = date('m/d/Y h:i:s a', time());
 
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-archive"></span>
                     <div>
                         <h5>Picked objects</h5>
                         <h4>7</h4>
@@ -129,7 +129,7 @@ $date = date('m/d/Y h:i:s a', time());
 
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-control-pause"></span>
                     <div>
                         <h5>Remaining objects</h5>
                         <h4>43</h4>
@@ -143,7 +143,7 @@ $date = date('m/d/Y h:i:s a', time());
 <!--            MOTOR SPEED-->
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-loop"></span>
                     <div>
                         <h5>Nominal Motor Speed</h5>
                         <h4>2 deg/s</h4>
@@ -154,24 +154,10 @@ $date = date('m/d/Y h:i:s a', time());
                 </div>
             </div>
 
-<!--            TIME-->
-            <div class="card-single">
-                <div class="card-body">
-                    <span class="ti-briefcase"></span>
-                    <div>
-                        <h5>Current Time</h5>
-                        <h4>13:43:22</h4>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a href="">View all</a>
-                </div>
-            </div>
-
 <!--            OPERATION LOCATION-->
             <div class="card-single">
                 <div class="card-body">
-                    <span class="ti-briefcase"></span>
+                    <span class="ti-target"></span>
                     <div>
                         <h5>Operation Location</h5>
                         <h4>Main Loading Dock</h4>
