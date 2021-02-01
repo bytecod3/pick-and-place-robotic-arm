@@ -24,7 +24,7 @@
                 <li>
                     <a href="">
                         <span class="ti-home"></span>
-                        <span>Main Dashboard</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
 
