@@ -1,3 +1,10 @@
+<?php
+
+date_default_timezone_set('Africa/Nairobi');
+
+$date = date('m/d/Y h:i:s a', time());
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +20,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h3 class="brand">
-                <span class="ti-unlink"></span>
+                <span class="ti-plug"></span>
                 <span>Robotic Arm</span>
             </h3>
             <label for="sidebar-toggle" class="ti-menu-alt"></label>
@@ -75,7 +82,8 @@
 
     <main>
 
-        <h2 class="dash-title">Nominal Data</h2>
+        <h2 class="dash-title">Operation Statistics</h2>
+        <small>Current time: </small>
 
         <div class="dash-cards">
 <!--            OPERATION STATUS-->
@@ -84,11 +92,11 @@
                     <span class="ti-briefcase"></span>
                     <div>
                         <h5>Arm Status</h5>
-                        <h4>Offline</h4>
+                        <h4 id="status">Offline</h4>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="">View all</a>
+                    <a href="#" onclick="toggleMode();" id="change-op-mode">Start</a>
                 </div>
             </div>
 
@@ -97,12 +105,38 @@
                 <div class="card-body">
                     <span class="ti-briefcase"></span>
                     <div>
-                        <h5>Objects</h5>
-                        <h4>57</h4>
+                        <h5>Capacity</h5>
+                        <h4>50</h4>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="">View all</a>
+                    <!--<a href="">View all</a>-->
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div class="card-body">
+                    <span class="ti-briefcase"></span>
+                    <div>
+                        <h5>Picked objects</h5>
+                        <h4>7</h4>
+                    </div>
+                </div>
+                <div class="card-footer">
+                   <!--<a href="">View all</a>-->
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div class="card-body">
+                    <span class="ti-briefcase"></span>
+                    <div>
+                        <h5>Remaining objects</h5>
+                        <h4>43</h4>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <!--<a href="">View all</a>-->
                 </div>
             </div>
 
@@ -152,5 +186,8 @@
 
 </div>
 
+
+<script src="main.js"></script>
 </body>
+
 </html>

@@ -3,7 +3,7 @@
 :root{
     --main-color: #027581;
     --color-dark: #1d2231;
-    --text-grey: #8390a2;
+    --text-black: #000000;
 }
 
 *{
@@ -173,7 +173,7 @@ main{
 }
 
 .card-body h5{
-    color: var(--text-grey);
+    color: grey;
     font-size: 1.2rem;
 }
 
@@ -187,10 +187,22 @@ main{
 .card-footer {
     padding: .2rem 1rem;
     background: #f9fafc;
+    text-align: center;
+
 }
 
 .card-footer a{
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: .2rem;
+    margin-bottom: .1rem;
+    width: 100%;
     color: var(--main-color);
+    transition: border 500ms;
+}
+
+.card-footer a:hover{
+    border: 1px solid black;
 }
 
 .recent {
