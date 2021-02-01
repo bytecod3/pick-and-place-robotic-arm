@@ -23,7 +23,7 @@
             <ul>
                 <li>
                     <a href="">
-                        <span class="ti-home"></span>
+                        <span class="ti-layout-grid2"></span>
                         <span>Dashboard</span>
                     </a>
                 </li>
