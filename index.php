@@ -83,7 +83,7 @@ $date = date('m/d/Y h:i:s a', time());
     <main>
 
         <h2 class="dash-title">Operation Statistics</h2>
-        <small>Current time: </small>
+        <small class="ferarri">Current time: <?php echo $date; ?> </small>
 
         <div class="dash-cards">
 <!--            OPERATION STATUS-->

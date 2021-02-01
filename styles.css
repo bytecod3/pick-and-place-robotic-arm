@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 :root{
+    --dark-color: #000000;
     --main-color: #027581;
     --color-dark: #1d2231;
     --text-black: #000000;
+    --text-red: #ff2800;
 }
 
 *{
@@ -15,11 +17,14 @@
     box-sizing: border-box;
 }
 
+.ferarri{
+    color: #03ac13;
+    font-size: 11px;
+}
+
 #sidebar-toggle{
     display: none;
 }
-
-
 
 .sidebar{
     height: 100%;
@@ -28,7 +33,7 @@
     left: 0;
     top: 0;
     z-index: 100;
-    background: var(--main-color);
+    background: var(--dark-color);
     color: #fff;
     overflow-y: auto;
     transition: width 500ms;
