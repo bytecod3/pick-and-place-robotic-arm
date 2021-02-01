@@ -83,7 +83,7 @@ $date = date('m/d/Y h:i:s a', time());
     <main>
 
         <h2 class="dash-title">Operation Statistics</h2>
-        <small class="ferarri">Current time: <?php echo $date; ?> </small>
+        <small class="ferarri">Time: <?php echo $date; ?> </small>
 
         <div class="dash-cards">
 <!--            OPERATION STATUS-->
@@ -150,7 +150,7 @@ $date = date('m/d/Y h:i:s a', time());
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="">View all</a>
+<!--                    <a href="">View all</a>-->
                 </div>
             </div>
 
