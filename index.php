@@ -1,7 +1,7 @@
 <?php
 
 // watchman
-if()
+
 
 date_default_timezone_set('Africa/Nairobi');
 
