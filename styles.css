@@ -220,6 +220,47 @@ main{
     grid-template-columns: 75% 25%;
 }
 
+/*login styles*/
+.form-container{
+    margin: auto;
+    max-width: 400px;
+    padding: 15px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 10%;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.form-header{
+    font-weight: bold;
+}
+
+.form-container input{
+    outline: none;
+    padding: 2px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.form-container input[type="submit"]{
+    background: black;
+    color: #fff;
+    padding: 6px;
+}
+
+.inputs div{
+    margin-bottom: 5px;
+}
+
+.success{
+    color: limegreen;
+    font-weight: bold;
+}
+
+.error{
+    color: red;
+}
 
 @media only screen and (max-width: 1200px){
     .sidebar{

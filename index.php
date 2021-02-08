@@ -1,5 +1,8 @@
 <?php
 
+// watchman
+if()
+
 date_default_timezone_set('Africa/Nairobi');
 
 $date = date('m/d/Y h:i:s a', time());
@@ -36,7 +39,7 @@ $date = date('m/d/Y h:i:s a', time());
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="./controls.php">
                         <span class="ti-settings"></span>
                         <span>Controls</span>
                     </a>
@@ -55,7 +58,6 @@ $date = date('m/d/Y h:i:s a', time());
                         <span>Logout</span>
                     </a>
                 </li>
-
 
             </ul>
         </div>

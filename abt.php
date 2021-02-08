@@ -30,14 +30,14 @@
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="./controls.php">
                         <span class="ti-settings"></span>
                         <span>Controls</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="./abt.php">
                         <span class="ti-book"></span>
                         <span>About</span>
                     </a>
