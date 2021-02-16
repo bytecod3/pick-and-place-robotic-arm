@@ -1,0 +1,5 @@
+/opt/lampp/htdocs/wazi-robot-platform/hardware/cmake-build-megaatmega2560/CMakeFiles/rebuild_cache.dir
+/opt/lampp/htdocs/wazi-robot-platform/hardware/cmake-build-megaatmega2560/CMakeFiles/Production.dir
+/opt/lampp/htdocs/wazi-robot-platform/hardware/cmake-build-megaatmega2560/CMakeFiles/edit_cache.dir
+/opt/lampp/htdocs/wazi-robot-platform/hardware/cmake-build-megaatmega2560/CMakeFiles/Debug.dir
+/opt/lampp/htdocs/wazi-robot-platform/hardware/cmake-build-megaatmega2560/CMakeFiles/Z_DUMMY_TARGET.dir

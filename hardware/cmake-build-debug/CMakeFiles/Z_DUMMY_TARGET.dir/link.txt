@@ -1,0 +1,1 @@
+/home/edwin/.platformio/packages/toolchain-atmelavr/bin/avr-g++  -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -Os -Wall -ffunction-sections -fdata-sections -flto -mmcu=atmega2560 -g   CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.obj  -o Z_DUMMY_TARGET 
