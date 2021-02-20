@@ -31,11 +31,15 @@ float hypotenuse, slope, circlePointX, circlePointY;
 
 // functions prototypes
 int detectObject();
-void runArm();
+void setNeutralPosition();
 
 void setup() {
 	// write your initialization code here
 	Serial.begin(9600);
+	
+	// set Pins
+	pinMode(led, OUTPUT);
+	pinMode(switchPin, OUTPUT);
 	
 	// attaching servo pins
 	base.attach(base_pin);
@@ -44,16 +48,11 @@ void setup() {
 	wrist.attach(wrist_pin);
 	gripper.attach(gripper_pin);
 	
-	// set Pins
-	pinMode(led, OUTPUT);
-	pinMode(switchPin, OUTPUT);
 	
-	/*----------RESET THE ARM POSITION-------------- */
-	//base.write(0);
-	//shoulder.write(90); // upright 90 deg
-	//elbow.write(60); // upright 60 deg
-	//wrist.write(110); // the gripper is straight when the wrist angle is 110 deg
-	//gripper.write(90); // gripper teeth closed when the gripper motor is at 90 deg
+	// start the arm at a neutral position
+	setNeutralPosition();
+	
+	
 }
 
 void loop() {
@@ -161,6 +160,95 @@ void genesis(int pin){
 	
 	digitalWrite(switchPin, HIGH);
 	
+}
+
+void setNeutralPosition(){
+	/* set the servos at a neutral position  */
+	
+	// status message
+	Serial.println("Initializing servos...");
+	Serial.println();
+	
+	// Always read the current  motor angles to move slowly to avoid generating excess inertial momentum
+	int currentBaseAngle = base.read();
+	int currentShoulderAngle = shoulder.read();
+	int currentElbowAngle = elbow.read();
+	int currentWristAngle = wrist.read();
+	int currentGripperAngle = gripper.read();
+	
+	// neutral position for base servo is 0 degrees
+	if(currentBaseAngle > 0){
+		// base angle motor should start at 0
+		for (int a = currentBaseAngle; a > 0; a--) {
+			// write down to 0
+			base.write(a);
+			delay(DELAY);
+		}
+		// else the motor is at 0
+	}
+	
+	// neutral position for shoulder servo is 90 degrees
+	if (currentShoulderAngle > 90){
+		// write down to 90 degrees from the current position
+		for(int b = currentShoulderAngle; b > 90; b--){
+			shoulder.write(b);
+			delay(DELAY);
+		}
+	} else{
+		// the current angle is less than 90 degrees
+		// write up to 90 degrees
+		for(int c = currentShoulderAngle; c < 90; c++){
+			shoulder.write(c);
+			delay(DELAY);
+		}
+	}
+	
+	// neutral position for elbow servo is 60 degrees
+	if(currentElbowAngle > 60){
+		// write down to 60 degrees
+		for (int d = currentElbowAngle; d > 60 ; d--) {
+			elbow.write(d);
+			delay(DELAY);
+		}
+	}else{
+		// current elbow angle is less than 60 degrees
+		// write up to 60
+		for(int e = currentElbowAngle; e < 60; e++){
+			elbow.write(e);
+			delay(DELAY);
+		}
+	}
+	
+	// neutral position for wrist servo is 110 deg
+	// the gripper is horizontal at this angle
+	if(currentWristAngle > 110){
+		// write down to 110 degrees
+		for(int f = currentWristAngle; f > 110; f--){
+			wrist.write(f);
+			delay(DELAY);
+		}
+	}else{
+		// write up to 110 degrees
+		for(int f = currentElbowAngle; f < 110; f++){
+			wrist.write(f);
+			delay(DELAY);
+		}
+	}
+	
+	// start the gripper in a closed position
+	if (currentGripperAngle > 90){
+		for(int g = currentGripperAngle; g > 90; g--){
+			// write down to 90 degrees to close it
+			gripper.write(g);
+			delay(DELAY);
+		}
+	}else{
+		for(int g = currentGripperAngle; g < 90; g++){
+			// write up to 90 degrees
+			gripper.write(g);
+			delay(DELAY);
+		}
+	}
 }
 
 /* Angle calculation functions. Cosine rule */
