@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 // constants
-#define DELAY 40
+#define DELAY 20
 #define PI 3.141592654
 
 // Servo objects
@@ -10,7 +10,9 @@ Servo base, shoulder, elbow, wrist, gripper;
 /* ------------- PINS -------------------- */
 // conveyor belt pins
 int led = 9;
-int object_pin = A1;
+int object_pin = A1;//
+
+int movingLED = 11;
 
 // switch pin
 int switchPin;
@@ -20,7 +22,7 @@ int base_pin = 2;
 int shoulder_pin = 3;
 int elbow_pin = 4;
 int wrist_pin = 5;
-int gripper_pin = 6;
+int gripper_pin = 8;
 
 /* Set up Inverse Kinematics variables */
 float shoulderLength = 6.0;
@@ -30,7 +32,7 @@ float hypotenuse, slope, circlePointX, circlePointY;
 
 // functions prototypes
 int detectObject();
-void setNeutralPosition();
+void setNeutralPosition();  
 
 void setup() {
 	// write your initialization code here
@@ -38,39 +40,166 @@ void setup() {
 	
 	// set Pins
 	pinMode(led, OUTPUT);
+  pinMode(movingLED, OUTPUT);
 	pinMode(switchPin, OUTPUT);
-	
-	// attaching servo pins
-	base.attach(base_pin);
-	shoulder.attach(shoulder_pin);
-	elbow.attach(elbow_pin);
-	wrist.attach(wrist_pin);
-	gripper.attach(gripper_pin);
-	
+
+  // attaching servo pins
+  base.attach(base_pin);
+  shoulder.attach(shoulder_pin);
+  elbow.attach(elbow_pin);
+  wrist.attach(wrist_pin);
+  gripper.attach(gripper_pin);
+
 	
 	// start the arm at a neutral position
 	setNeutralPosition();
-	
+
+  shoulder.write(70);
+  elbow.write(70);
+  wrist.write(20);
+  gripper.write(0);
 	
 }
 
-void loop() {
-	// read the object pin to detect if an object is present
-	int object_detected = detectObject();
-	
-	Serial.println(object_detected);
+void loop() { 
+   // open gripper
+   // move base 180 
+   // raise shoulder
+   // lower elbow
+   // close gripper to pick object
+   // move base 0
+   // lower shoulder
+   // raise elbow
+   // open gripper to place object
 
-	if(object_detected < 200){
-		// Object blocking the infrared, meaning there is an object ready
-		// to be picked
-		digitalWrite(led, HIGH);
-		
-		// initiate object picking sequence
-		
-	}else{
-		// Object
-		digitalWrite(led, LOW);
-	}
+
+  //PICKING
+
+  //move base to 180
+  for(int i = 0; i<= 180; i++){
+    base.write(i);
+    Serial.println(i);
+    delay(DELAY);
+  }
+
+  // raise shoulder 
+  for(int i = 70; i > 30; i--){
+    shoulder.write(i);
+    delay(DELAY);
+  }
+
+  // lower elbow
+  for(int i = 70; i < 150; i++){
+    elbow.write(i);
+    delay(DELAY);
+  }
+
+  // close gripper
+  for (int i = 50; i > 10; i--){
+    gripper.write(i);
+    delay(DELAY);
+  }
+
+  // raise elbow
+  for(int i = 150; i > 70; i--){
+    elbow.write(i);
+    delay(DELAY);
+  }
+
+  // raise shoulder
+  for(int i = 30; i < 70; i++){
+    shoulder.write(i);
+    delay(DELAY);
+  }
+  
+  // PLACING
+  // move base to 0
+  for(int i = 180; i> 0; i--){
+    base.write(i);
+    Serial.println(i);
+    delay(DELAY);
+  }
+
+  // raise shoulder
+  for(int i = 70; i> 30; i--){
+    shoulder.write(i);
+    delay(DELAY);
+  }
+
+  // lower elbow
+  for(int i=70; i < 150; i++){
+    elbow.write(i);
+    delay(DELAY);
+  }
+
+  // open gripper
+  for (int i = 0; i < 50; i++){
+    gripper.write(i);
+    delay(DELAY);
+  }
+
+  // raise elbow
+  for(int i = 150; i > 70; i--){
+    elbow.write(i);
+    delay(DELAY);
+  }
+
+  // lower shoulder
+  for(int i=30; i<70; i++){
+    shoulder.write(i);
+    delay(DELAY);
+  }
+
+//==========================================
+  
+  
+  
+//
+//  int sAngle = shoulder.read();
+//  if(sAngle<70){
+//    for(int s = sAngle; i < 70; i++){
+//      shoulder.write(s);
+//      delay(DELAY);
+//    }
+//  }else{
+//    for(int s = sAngle; i > 70; i--){
+//      shoulder.write(s);
+//      delay(DELAY);
+//    }
+//  }
+//
+  
+//
+//  // lower elbow
+//  for(int i = 70; i < 90; i++){
+//    elbow.write(i);
+//    delay(DELAY);
+//  }
+
+  // open gripper
+//  for(int i = 70; i < 90; i++){
+//    elbow.write(i);
+//    delay(DELAY);
+//  }
+
+
+  
+	// read the object pin to detect if an object is present
+//	int object_detected = detectObject();
+//	
+//	Serial.println(object_detected);
+//
+//	if(object_detected < 200){
+//		// Object blocking the infrared, meaning there is an object ready
+//		// to be picked
+//		digitalWrite(led, HIGH);
+//		
+//		// initiate object picking sequence
+//		
+//	}else{
+//		// Object
+//		digitalWrite(led, LOW);
+//	}
 }
 
 int detectObject(){
@@ -122,6 +251,7 @@ void moveElbowToPick(){
 	// set the elbow angle to pick the object
 	for (int pos = 80; pos <= 180; pos++) {
 		elbow.write(pos);
+    delay(DELAY);
 	}
 }
 
@@ -164,90 +294,92 @@ void genesis(int pin){
 void setNeutralPosition(){
 	/* set the servos at a neutral position  */
 	
-	// status message
-	Serial.println("Initializing servos...");
-	Serial.println();
-	
-	// Always read the current  motor angles to move slowly to avoid generating excess inertial momentum
-	int currentBaseAngle = base.read();
+//	// status message
+//	Serial.println("Initializing servos...");
+//	Serial.println();
+//	
+	// Read the current  motor angles to move slowly to avoid generating excess inertial momentum
+//	int currentBaseAngle = base.read();
 	int currentShoulderAngle = shoulder.read();
+  Serial.print("Current shoulder angle: "); Serial.print(currentShoulderAngle); Serial.println();
+
 	int currentElbowAngle = elbow.read();
-	int currentWristAngle = wrist.read();
-	int currentGripperAngle = gripper.read();
-	
-	// neutral position for base servo is 0 degrees
-	if(currentBaseAngle > 0){
-		// base angle motor should start at 0
-		for (int a = currentBaseAngle; a > 0; a--) {
-			// write down to 0
-			base.write(a);
-			delay(DELAY);
-		}
-		// else the motor is at 0
-	}
-	
-	// neutral position for shoulder servo is 90 degrees
-	if (currentShoulderAngle > 90){
-		// write down to 90 degrees from the current position
-		for(int b = currentShoulderAngle; b > 90; b--){
-			shoulder.write(b);
-			delay(DELAY);
-		}
-	} else{
-		// the current angle is less than 90 degrees
-		// write up to 90 degrees
-		for(int c = currentShoulderAngle; c < 90; c++){
-			shoulder.write(c);
-			delay(DELAY);
-		}
-	}
-	
-	// neutral position for elbow servo is 60 degrees
-	if(currentElbowAngle > 60){
-		// write down to 60 degrees
-		for (int d = currentElbowAngle; d > 60 ; d--) {
-			elbow.write(d);
-			delay(DELAY);
-		}
-	}else{
-		// current elbow angle is less than 60 degrees
-		// write up to 60
-		for(int e = currentElbowAngle; e < 60; e++){
-			elbow.write(e);
-			delay(DELAY);
-		}
-	}
-	
-	// neutral position for wrist servo is 110 deg
-	// the gripper is horizontal at this angle
-	if(currentWristAngle > 110){
-		// write down to 110 degrees
-		for(int f = currentWristAngle; f > 110; f--){
-			wrist.write(f);
-			delay(DELAY);
-		}
-	}else{
-		// write up to 110 degrees
-		for(int f = currentElbowAngle; f < 110; f++){
-			wrist.write(f);
-			delay(DELAY);
-		}
-	}
+  Serial.print("Current elbow angle: "); Serial.print(currentElbowAngle); Serial.println();
+//	int currentWristAngle = wrist.read();
+//	int currentGripperAngle = gripper.read();
+//	
+//	// neutral position for base servo is 0 degrees
+//	if(currentBaseAngle > 0){
+//		// base angle motor should start at 0
+//		for (int a = currentBaseAngle; a > 0; a--) {
+//			// write down to 0
+//      Serial.print("Base: "); Serial.print(a); Serial.println("\n");
+//			base.write(a);
+//			delay(DELAY);
+//		}
+//		// else the motor is at 0
+//	}
+//	
+	// neutral position for shoulder servo is 0 degrees
+//	if (currentShoulderAngle > 0){
+//		// write down to 0 degrees from the current position
+//		for(int b = currentShoulderAngle; b > 0; b--){
+//			shoulder.write(b);
+//      Serial.print("shoulder: "); Serial.print(b); Serial.println("\n");
+//			delay(DELAY);
+//		}
+//	}
+//	
+//	// neutral position for elbow servo is 90 degrees
+//	if(currentElbowAngle > 90){
+//		// write down to 90 degrees
+//		for (int d = currentElbowAngle; d > 90 ; d--) {
+//			elbow.write(d);
+//      Serial.print("elbow: "); Serial.print(d); Serial.println("\n");
+//			delay(DELAY);
+//		}
+//	}else{
+//		// current elbow angle is less than 90 degrees
+//		// write up to 90
+//		for(int e = currentElbowAngle; e < 90; e++){
+//			elbow.write(e);
+//      Serial.print("elbow: "); Serial.print(e); Serial.println("\n");
+//			delay(DELAY);
+//		}
+//	}
+//	
+//	// neutral position for wrist servo is 20 deg
+//	// the gripper is horizontal at this angle
+//	if(currentWristAngle > 20){
+//		// write down to 20 degrees
+//		for(int f = currentWristAngle; f > 20; f--){
+//			wrist.write(f);
+//      Serial.print("wrist: "); Serial.print(f); Serial.println("\n");
+//			delay(DELAY);
+//		}
+//	}else{
+//		// write up to 20 degrees
+//		for(int f = currentWristAngle; f < 20; f++){
+//			wrist.write(f);
+//      Serial.print("wrist: "); Serial.print(f); Serial.println("\n");
+//			delay(DELAY);
+//		}
+//	}
 	
 	// start the gripper in a closed position
-	if (currentGripperAngle > 90){
-		for(int g = currentGripperAngle; g > 90; g--){
-			// write down to 90 degrees to close it
-			gripper.write(g);
-			delay(DELAY);
-		}
-	}else{
-		for(int g = currentGripperAngle; g < 90; g++){
-			// write up to 90 degrees
-			gripper.write(g);
-			delay(DELAY);
-		}
-	}
+//	if (currentGripperAngle > 90){
+//		for(int g = currentGripperAngle; g > 90; g--){
+//			// write down to 90 degrees to close it
+//			gripper.write(g);
+//			delay(DELAY);
+//		}
+//	}else{
+//		for(int g = currentGripperAngle; g < 90; g++){
+//			// write up to 90 degrees
+//			gripper.write(g);
+//			delay(DELAY);
+//		}
+//	}
 }
 
 /* Angle calculation functions. Cosine rule */
