@@ -13,7 +13,8 @@ def display_image_array(images_array):
 
 image_path = "statics/img.png"
 
-image = cv2.imread(image_path) # read image and process
+# read image and process
+image = cv2.imread(image_path) 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBLur(gray, (9, 9), 0)
 
@@ -64,3 +65,6 @@ for cnt in cnts:
 		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
     cv2.putText(image, "{:.1f}cm".format(ht), (int(mid_pt_verticle[0] + 10), int(mid_pt_verticle[1])), 
 		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+
+
+display_image_array([image])
