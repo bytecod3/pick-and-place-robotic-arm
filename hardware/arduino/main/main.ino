@@ -35,30 +35,30 @@ int detectObject();
 void setNeutralPosition();  
 
 void setup() {
-	// write your initialization code here
-	Serial.begin(9600);
-	
-	// set Pins
-	pinMode(led, OUTPUT);
-  pinMode(movingLED, OUTPUT);
-	pinMode(switchPin, OUTPUT);
+    // write your initialization code here
+    Serial.begin(9600);
 
-  // attaching servo pins
-  base.attach(base_pin);
-  shoulder.attach(shoulder_pin);
-  elbow.attach(elbow_pin);
-  wrist.attach(wrist_pin);
-  gripper.attach(gripper_pin);
+    // set Pins
+    pinMode(led, OUTPUT);
+    pinMode(movingLED, OUTPUT);
+    pinMode(switchPin, OUTPUT);
 
-	
-	// start the arm at a neutral position
-	setNeutralPosition();
+    // attaching servo pins
+    base.attach(base_pin);
+    shoulder.attach(shoulder_pin);
+    elbow.attach(elbow_pin);
+    wrist.attach(wrist_pin);
+    gripper.attach(gripper_pin);
 
-  shoulder.write(70);
-  elbow.write(70);
-  wrist.write(20);
-  gripper.write(0);
-	
+
+    // start the arm at a neutral position
+    setNeutralPosition();
+
+    shoulder.write(70);
+    elbow.write(70);
+    wrist.write(20);
+    gripper.write(0);
+
 }
 
 void loop() { 

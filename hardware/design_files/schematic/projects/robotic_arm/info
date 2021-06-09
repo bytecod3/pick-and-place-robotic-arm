@@ -1,0 +1,15 @@
+{
+  "uuid": "3664e23f83df57172bf8b953a8c823a7",
+  "path": "Offline/robotic_arm",
+  "name": "robotic_arm",
+  "content": "Pick and place robotic arm",
+  "created_at": "2021-06-09 11:24:01",
+  "updated_at": "2021-06-09 11:24:01",
+  "stick": "",
+  "documents": [],
+  "sort": [],
+  "title": "robotic_arm",
+  "foldername": "robotic_arm",
+  "schfilename": "robotic_arm.json",
+  "schfilemtime": 1623227041932.6824
+}

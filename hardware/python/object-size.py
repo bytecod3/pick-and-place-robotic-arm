@@ -1,8 +1,10 @@
 from scipy.spatial.distance import euclidean
+import imutils
 from imutils import perspective
 from imutils import perspective
 import numpy as np
 import cv2
+
 
 def display_image_array(images_array):
     '''  Function to show array of images '''
@@ -16,19 +18,19 @@ image_path = "statics/img.png"
 # read image and process
 image = cv2.imread(image_path) 
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-blur = cv2.GaussianBLur(gray, (9, 9), 0)
+blur = cv2.GaussianBlur(gray, (9, 9), 0)
 
 edged = cv2.Canny(blur, 50, 100)
 edged = cv2.dilate(edged, None, iterations=1)
 edged = cv2.erode(edged, None, iterations=1)
 
 # find contours
-cnts = cv2.findCountours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
 
 # sort contours from left to right. left most contour in reference 
 # object
-(cnts, _) = contours.sort_contours(cnts)
+(cnts, _) = Contours.sort_contours(cnts)
 
 # remove contours which are not large enough
 cnts = [x for x in cnts if cv2.contourArea(x) > 100]
