@@ -54,10 +54,10 @@ void setup() {
     // start the arm at a neutral position
     setNeutralPosition();
 
-    shoulder.write(70);
-    elbow.write(70);
-    wrist.write(20);
-    gripper.write(0);
+    shoulder.write(30);
+//    elbow.write(70);
+//    wrist.write(20);
+//    gripper.write(0);
 
 }
 
@@ -72,83 +72,28 @@ void loop() {
    // raise elbow
    // open gripper to place object
 
+    for(int i = 0; i <180; i++){
+      base.write(i);
+      delay(DELAY);
+    }
 
-  //PICKING
+    for(int i = 30; i < 70; i++){
+      shoulder.write(i);
+      delay(DELAY);
+    }
 
-  //move base to 180
-  for(int i = 0; i<= 180; i++){
-    base.write(i);
-    Serial.println(i);
-    delay(DELAY);
-  }
 
-  // raise shoulder 
-  for(int i = 70; i > 30; i--){
-    shoulder.write(i);
-    delay(DELAY);
-  }
+    for(int i = 180; i >0; i--){
+      base.write(i);
+      delay(DELAY);
+    }
 
-  // lower elbow
-  for(int i = 70; i < 150; i++){
-    elbow.write(i);
-    delay(DELAY);
-  }
+    for(int i = 70; i > 30; i--){
+      shoulder.write(i);
+      delay(DELAY);
+    }
 
-  // close gripper
-  for (int i = 50; i > 10; i--){
-    gripper.write(i);
-    delay(DELAY);
-  }
-
-  // raise elbow
-  for(int i = 150; i > 70; i--){
-    elbow.write(i);
-    delay(DELAY);
-  }
-
-  // raise shoulder
-  for(int i = 30; i < 70; i++){
-    shoulder.write(i);
-    delay(DELAY);
-  }
-  
-  // PLACING
-  // move base to 0
-  for(int i = 180; i> 0; i--){
-    base.write(i);
-    Serial.println(i);
-    delay(DELAY);
-  }
-
-  // raise shoulder
-  for(int i = 70; i> 30; i--){
-    shoulder.write(i);
-    delay(DELAY);
-  }
-
-  // lower elbow
-  for(int i=70; i < 150; i++){
-    elbow.write(i);
-    delay(DELAY);
-  }
-
-  // open gripper
-  for (int i = 0; i < 50; i++){
-    gripper.write(i);
-    delay(DELAY);
-  }
-
-  // raise elbow
-  for(int i = 150; i > 70; i--){
-    elbow.write(i);
-    delay(DELAY);
-  }
-
-  // lower shoulder
-  for(int i=30; i<70; i++){
-    shoulder.write(i);
-    delay(DELAY);
-  }
+    
 
 //==========================================
   

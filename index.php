@@ -14,7 +14,7 @@ $date = date('m/d/Y h:i:s a', time());
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./webApp/styles.css">
     <title>IRSS</title>
 </head>
 <body>
