@@ -12,8 +12,8 @@ Design
 ![Controller Schematic](./hardware/design_files/pcb.png)  
 
 View
-![Controller PCB1](./hardware/design_files/pcb1.png)
+![Controller PCB1](./hardware/design_files/pcb2.png)
 
 View
-![Controller PCB2](./hardware/design_files/pcb2.png)
+![Controller PCB2](./hardware/design_files/pcb3.png)
 
